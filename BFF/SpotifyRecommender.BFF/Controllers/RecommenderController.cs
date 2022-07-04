@@ -54,13 +54,13 @@ namespace SpotifyRecommender.BFF.Controllers
             return Ok(await _grpcRecommenderService.GetUsers());
         }
 
-        //[HttpGet]
-        //[Route("tracks/{name}")]
-        //public async Task<IActionResult> GetTracks(string name)
-        //{
-        //    return Ok((await _spotifyRESTApi.GetTracks(name))?.OrderByDescending(x => x.popularity).Select(x=> new Track() {Id = x.id, TrackName = x.name, ArtistName = string.Join(" & ", x.artists.Select(x=>x.name)) }));
-        //}
-    
+        [HttpGet]
+        [Route("tracks/{name}")]
+        public async Task<IActionResult> GetTracks(string name)
+        {
+            return Ok((await _spotifyRESTApi.GetTracks(name))?.OrderByDescending(x => x.popularity).Select(x => new Track() { Id = x.id, TrackName = x.name, ArtistName = string.Join(" & ", x.artists.Select(x => x.name)) }));
+        }
+
         [HttpGet]
         [Route("genres")]
         public async Task<IActionResult> GetGenres()
@@ -82,7 +82,7 @@ namespace SpotifyRecommender.BFF.Controllers
         }
         
         [HttpGet]
-        [Route("tracks/{trackId}")]
+        [Route("track/{trackId}")]
         public async Task<IActionResult> GetTrackById(string trackId)
         {
             var track = await _spotifyRESTApi.GetTrack(trackId);

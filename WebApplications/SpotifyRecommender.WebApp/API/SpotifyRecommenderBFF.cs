@@ -52,7 +52,7 @@ namespace SpotifyRecommender.WebApp.API
         }
         public async Task<Track> GetTrackById(string trackId)
         {
-            return (await _apiCaller.GetStringResponseAs<Track>(await _apiCaller.Get($"/Recommender/tracks/{trackId}")));
+            return (await _apiCaller.GetStringResponseAs<Track>(await _apiCaller.Get($"/Recommender/track/{trackId}")));
         }
 
     }
