@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BFF", "BFF", "{FE0DC777-7D15-4C59-9FD9-AB5E54C06BE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E8A681CE-2790-4ED8-AF42-A213D2D05E28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecommenderService", "RecommenderService", "{FEA5EFB8-F48F-4E26-AF1E-868ECC0CAA88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecommenderService.API", "..\Services\RecommenderService\RecommenderService.API\RecommenderService.API.csproj", "{80F30224-0B4D-4370-BBE5-42B51F7BC7D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecommenderService.Infrastructure", "..\Services\RecommenderService\RecommenderService.Infrastructure\RecommenderService.Infrastructure.csproj", "{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecommenderService.Domain", "..\Services\RecommenderService\RecommenderService.Domain\RecommenderService.Domain.csproj", "{ED0C83A1-9624-439B-AD5A-09F9459B9CA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Remotes", "Remotes", "{4A5D3278-BA32-4C10-982F-8CDA9C0035A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyAPI", "..\Remotes\SpotifyAPI\SpotifyAPI.csproj", "{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpotifyRecommender", "SpotifyRecommender", "{98D7A1C8-815E-4138-88F5-62BD33EEC205}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyRecommender.BFF", "..\BFF\SpotifyRecommender.BFF\SpotifyRecommender.BFF.csproj", "{A34A7A1E-C63F-4C70-9268-7B54FBD29809}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApplications", "WebApplications", "{51F25C86-2B7A-49C9-BEDE-B2AE330738F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyRecommender.WebApp", "..\WebApplications\SpotifyRecommender.WebApp\SpotifyRecommender.WebApp.csproj", "{C21D133B-8A3C-4013-8702-929C5F390FBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80F30224-0B4D-4370-BBE5-42B51F7BC7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F30224-0B4D-4370-BBE5-42B51F7BC7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F30224-0B4D-4370-BBE5-42B51F7BC7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F30224-0B4D-4370-BBE5-42B51F7BC7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED0C83A1-9624-439B-AD5A-09F9459B9CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0C83A1-9624-439B-AD5A-09F9459B9CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0C83A1-9624-439B-AD5A-09F9459B9CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0C83A1-9624-439B-AD5A-09F9459B9CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34A7A1E-C63F-4C70-9268-7B54FBD29809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34A7A1E-C63F-4C70-9268-7B54FBD29809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34A7A1E-C63F-4C70-9268-7B54FBD29809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34A7A1E-C63F-4C70-9268-7B54FBD29809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21D133B-8A3C-4013-8702-929C5F390FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21D133B-8A3C-4013-8702-929C5F390FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21D133B-8A3C-4013-8702-929C5F390FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21D133B-8A3C-4013-8702-929C5F390FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FEA5EFB8-F48F-4E26-AF1E-868ECC0CAA88} = {E8A681CE-2790-4ED8-AF42-A213D2D05E28}
+		{80F30224-0B4D-4370-BBE5-42B51F7BC7D3} = {FEA5EFB8-F48F-4E26-AF1E-868ECC0CAA88}
+		{B1ABF74B-C19B-4AEE-8163-9BE6C311C22E} = {FEA5EFB8-F48F-4E26-AF1E-868ECC0CAA88}
+		{ED0C83A1-9624-439B-AD5A-09F9459B9CA5} = {FEA5EFB8-F48F-4E26-AF1E-868ECC0CAA88}
+		{486FE4A2-C355-44F1-BCB2-D07B0FAA3FEA} = {4A5D3278-BA32-4C10-982F-8CDA9C0035A5}
+		{98D7A1C8-815E-4138-88F5-62BD33EEC205} = {FE0DC777-7D15-4C59-9FD9-AB5E54C06BE3}
+		{A34A7A1E-C63F-4C70-9268-7B54FBD29809} = {98D7A1C8-815E-4138-88F5-62BD33EEC205}
+		{C21D133B-8A3C-4013-8702-929C5F390FBE} = {51F25C86-2B7A-49C9-BEDE-B2AE330738F5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B33274D-4FBB-49AA-9466-82DE9B3E4EEE}
+	EndGlobalSection
+EndGlobal

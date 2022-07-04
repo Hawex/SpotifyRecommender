@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "b4/Ev4xOMuTQzZkA0s903HAc7efjVJrPpFdAs7SzhQNl3L5xehKTc8FkYu+gxS8FKiTgvt3nLgpnACVB6pARWA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Bartek\\source\\repos\\SpotifyRecommenderR\\WebApplications\\SpotifyRecommender.WebApp\\SpotifyRecommender.WebApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bartek\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

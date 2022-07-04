@@ -1,0 +1,2 @@
+obj\Debug\net5.0/GRPCSpotifyRecommender.cs \
+obj\Debug\net5.0/GRPCSpotifyRecommenderGrpc.cs: ../../Services/RecommenderService/RecommenderService.API/Protos/gRPCSpotifyRecommender.proto

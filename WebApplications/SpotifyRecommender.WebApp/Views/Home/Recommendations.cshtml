@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Recommendations";
+}
+
+<div class="text-center">
+    <h3>Select user:</h3>
+    <select style="width:200px;" name="usersList" id="usersList">
+        @foreach (var user in (IEnumerable<UserModel>)ViewBag.Users)
+        {
+            <option value="@user.Id">@user.Login</option>
+        }
+    </select>
+    <br />
+    <button onclick="getUserRecommendations()">Get user recommendations.</button>
+
+    <div id="recommendationsList"></div>
+
+</div>
+@section Scripts{
+    <script>
+        function getUserRecommendations() {
+            var usersList = document.getElementById("usersList");
+            var userId = usersList[usersList.selectedIndex].value;
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetUserRecommendations", "Home")',
+                    data: { userId: userId },
+                    success: function (result) {
+                        var list = document.getElementById("recommendationsList");
+                        list.innerHTML = "";
+
+
+                        var ul = document.createElement('ul');
+                        ul.setAttribute('id', 'rList');
+
+
+                        document.getElementById('recommendationsList').appendChild(ul);
+                        result.forEach(renderList);
+
+                        function renderList(element, index, arr) {
+                            var li = document.createElement('li');
+                            li.setAttribute('class', 'item');
+                            ul.appendChild(li);
+                            li.innerHTML = element.artistName + " - " + element.trackName;
+                        }
+                    },
+                    error: function(err)
+                    {
+                        console.log(err);
+                }
+
+                })
+        }
+    </script>
+}

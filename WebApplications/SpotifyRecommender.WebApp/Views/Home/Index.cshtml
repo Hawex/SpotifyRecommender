@@ -1,0 +1,219 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h3>Select user:</h3>
+    <select style="width:200px;" name="usersList" id="usersList" onchange="selectedUserChanged(this.selectedOptions)">
+        @foreach (var user in (IEnumerable<UserModel>)ViewBag.Users)
+        {
+            <option value="@user.Id">@user.Login</option>
+        }
+    </select>
+    <br />
+    <br />
+    <h3>
+        Select genres that you like:
+    </h3>
+    <select style="width:200px;" name="genresList" id="genresList" multiple multiselect-search="true" multiselect-select-all="true" multiselect-max-items="3" onchange="selectedGenresChanged(this.selectedOptions)">
+        @foreach (var genre in (List<string>)ViewBag.Genres)
+        {
+            <option>@genre</option>
+        }
+    </select>
+    <br />
+    <br />
+
+    <h3>
+        Select tracks that you like:
+    </h3>
+    <br />
+    <label>Enter track name to search: </label>
+    <input type="text" id="trackName" />
+    <button onclick="searchForTracks()">Search</button>
+    <br />
+
+    <select style="width:200px;" name="tracksList" id="tracksList">
+    </select>
+
+    <button onclick="addTrackToFavourites()">Add to favourites</button>
+    <br />
+    <label>Selected tracks:</label>
+    <div id="selectedTracks"></div>
+    <br />
+    <br />
+    <h3>
+        Select artists that you like:
+    </h3>
+    <br />
+    <label>Enter artist name to search: </label>
+    <input type="text" id="artistName" />
+    <button onclick="searchForArtists()">Search</button>
+    <br />
+
+    <select style="width:200px;" name="artistsList" id="artistsList">
+    </select>
+
+    <button onclick="addArtistToFavourites()">Add to favourites</button>
+    <br />
+    <label>Selected artists:</label>
+    <div id="selectedArtists"></div>
+    <br />
+    <br />
+    <button onclick="saveUserRecommendations()">Save user preferences.</button>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/js/multiselect-dropdown.js"></script>
+    <script>
+
+        function saveUserRecommendations()
+        {
+            if (!selectedUserId) {
+                var usersList = document.getElementById("usersList");
+                selectedUserId = usersList[usersList.selectedIndex].value;
+            }
+            var userWithRecommendationBuildModel = {};
+            userWithRecommendationBuildModel.userid = selectedUserId;
+            userWithRecommendationBuildModel.genres = selectedGenres;
+            userWithRecommendationBuildModel.trackids = favouriteTracks;
+            userWithRecommendationBuildModel.artistsids =favouriteArtists;
+            $.ajax(
+                {
+                    type: "POST",
+                    url: '@Url.Action("SaveUserRecommendations", "Home")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(userWithRecommendationBuildModel),
+                    success: function (result) {
+                        if (result) {
+                            alert("Successfully added recommendations for user.");
+                        }
+                        else {
+                            alert("Can't add recommendations for user.");
+                        }
+                    },
+                    error: function(err)
+                    {
+                        alert("Can't add recommendations for user. Check console.");
+                        console.log(err);
+                }
+
+                })
+        }
+
+        var selectedUserId;
+        function selectedUserChanged(userId) {
+            selectedUserChanged = userId;
+        }
+
+        var selectedGenres = [];
+        function selectedGenresChanged(selectedOptions) {
+            selectedGenres = [];
+            for (var i = 0; i < selectedOptions.length; i++) {
+                selectedGenres.push(selectedOptions[i].value)
+            }
+        }
+
+        function searchForTracks() {
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetTracks", "Home")',
+                    data: { name: document.getElementById("trackName").value },
+                    success: function (result) {
+                        clearTracksList();
+                        result.forEach(x => addNewTrackToList(x));
+                    },
+                    error: function(err)
+                    {
+                        console.log(err);
+                }
+
+                })
+        }
+
+        function addNewTrackToList(track) {
+            var select = document.getElementById("tracksList");
+            var opt = document.createElement('option');
+            opt.value = track.id;
+            opt.innerHTML = track.artistName + '-' + track.trackName;
+            select.appendChild(opt);
+        }
+
+        function clearTracksList() {
+            var select = document.getElementById("tracksList");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+        }
+        var favouriteTracks = [];
+        var favouriteTracksNames = [];
+        function addTrackToFavourites() {
+            var trackList = document.getElementById("tracksList");
+            var value = trackList.value
+            if (value) {
+                if (!favouriteTracks.includes(value)) {
+                    favouriteTracks.push(value);
+                    favouriteTracksNames.push(trackList[trackList.selectedIndex].text);
+                    document.getElementById("selectedTracks").textContent = favouriteTracksNames.toString();
+
+                }
+            }
+
+
+        }
+        function searchForArtists() {
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetArtists", "Home")',
+                    data: { name: document.getElementById("artistName").value },
+                    success: function (result) {
+                        clearArtistsList();
+                        result.forEach(x => addNewArtistToList(x));
+                    },
+                    error: function(err)
+                    {
+                        console.log(err);
+                }
+
+                })
+        }
+
+        function addNewArtistToList(artist) {
+            var select = document.getElementById("artistsList");
+            var opt = document.createElement('option');
+            opt.value = artist.id;
+            opt.innerHTML = artist.name;
+            select.appendChild(opt);
+        }
+
+        function clearArtistsList() {
+            var select = document.getElementById("artistsList");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+        }
+        var favouriteArtists = [];
+        var favouriteArtistsNames = [];
+        function addArtistToFavourites() {
+            var artistsList = document.getElementById("artistsList");
+            var value = artistsList.value
+            if (value) {
+                if (!favouriteArtists.includes(value)) {
+                    favouriteArtists.push(value);
+                    favouriteArtistsNames.push(artistsList[artistsList.selectedIndex].text);
+                    document.getElementById("selectedArtists").textContent = favouriteArtistsNames.toString();
+
+                }
+            }
+
+
+        }
+    </script>
+}

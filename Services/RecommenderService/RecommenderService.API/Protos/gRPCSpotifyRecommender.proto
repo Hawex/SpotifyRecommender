@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option csharp_namespace = "RecommenderService.gRPC";
+
+package gRPCSpotifyRecommender;
+
+service gRPCSpotifyRecommender {
+  rpc AddUser (AddUserRequest) returns (AddUserReply);
+  rpc AddUserFavourites (AddUserFavouritesRequest) returns (AddUserFavouritesReply);
+  rpc GetUsers (EmptyRequest) returns (GetUsersReply);
+  rpc GetUserRecommendations (GetUserRecommendationsRequest) returns (GetUserRecommendationsReply);
+}
+
+//requests
+message AddUserRequest {
+  string name = 1;
+}
+message AddUserFavouritesRequest {
+  repeated UserFavourite favourites = 1; 
+}
+message GetUserRecommendationsRequest {
+  string userId = 1;
+}
+message EmptyRequest {
+}
+
+
+//responses
+message AddUserReply {
+  bool result = 1;
+}
+message AddUserFavouritesReply {
+  bool result = 1;
+}
+
+message GetUsersReply {
+  repeated User result = 1;
+}
+message GetUserRecommendationsReply {
+  repeated UserRecommendation result = 1;
+}
+
+
+
+//helpers
+message UserRecommendation{
+	string Id =1;
+	string UserId =2;
+	string TrackID = 3;
+	int32 Score = 4;
+}
+
+message UserFavourite{
+	string Id =1;
+	string UserId =2;
+	string EntityIdentifier = 3;
+	FavouriteEntityType EntityType = 4;
+	int32 Score = 5;
+}
+       
+message User{
+	string Id =1;
+	string Name =2;
+	bool IsUserReadyForRecommendation = 3;
+}
+
+enum FavouriteEntityType{
+	UNKNOWN = 0;
+    ARTIST = 1;
+    GENRE = 2;
+    TRACK = 3;
+    YEAR = 4;
+}
